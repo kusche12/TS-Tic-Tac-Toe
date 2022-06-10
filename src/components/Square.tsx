@@ -4,24 +4,14 @@ type Props = {
     value: "" | "X" | "O";
     pos: Array<number>;
     setSquareValue: Function;
-    setCurrentTurn: Function;
-    currentTurn: number;
+    winner: number | null;
 };
 
-const Square = ({ value, pos, setSquareValue, setCurrentTurn, currentTurn }: Props) => {
-
-    // const userValue = currentTurn === 1 ? 'X' : 'O';
+const Square = ({ value, pos, setSquareValue, winner }: Props) => {
 
     const handleClick = () => {
-        if (value !== '') return;
-
+        if (value !== '' || winner) return;
         setSquareValue(pos);
-
-        if (currentTurn === 1) {
-            setCurrentTurn(2);
-        } else {
-            setCurrentTurn(1);
-        }
     };
 
     return (

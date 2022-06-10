@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state';
 import '../App.css';
 
 const StartGamePage = () => {
     const [player1, setPlayer1] = useState<string>("");
     const [player2, setPlayer2] = useState<string>("");
     let navigate = useNavigate();
+
+    const dispatch = useDispatch();
+    const { changeName } = bindActionCreators(actionCreators, dispatch);
     
     const startGame = () => {
         // TODO: Use redux to ensure both fields are full before clicking "Start"
+        changeName([player1, player2]);
 
-        // TODO: Use redux to store the player's names in redux store
         navigate('/game');
     }
 
